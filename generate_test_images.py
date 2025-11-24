@@ -1,5 +1,5 @@
 import os
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageFont
 
 def create_dummy_images(folder_name="input_images", count=5):
     """
@@ -16,14 +16,21 @@ def create_dummy_images(folder_name="input_images", count=5):
     for i in range(count):
         # Create a large random image (e.g., 1920x1080)
         img = Image.new('RGB', (1920, 1080), color=colors[i % len(colors)])
-        
-        # Add some text or shapes so we can see it's an image
-        d = ImageDraw.Draw(img)
-        d.rectangle([400, 400, 600, 600], fill="white")
-        
+        draw = ImageDraw.Draw(img)
+
+        # Draw a white square
+        draw.rectangle([400, 400, 600, 600], fill="white")
+
+        # Optional: Add text for identification
+        try:
+            font = ImageFont.load_default()
+            draw.text((420, 420), f"Img {i+1}", fill="black", font=font)
+        except:
+            pass  # Safe fallback
+
         filename = f"test_image_{i+1}.jpg"
         file_path = os.path.join(folder_name, filename)
-        
+
         img.save(file_path)
         print(f" - Created: {filename}")
 
