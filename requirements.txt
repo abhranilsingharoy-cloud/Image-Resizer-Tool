@@ -1,0 +1,6 @@
+Runtime Environment: Python 3.8+
+​--- Core Dependencies ---
+​Pillow is the friendly PIL fork. It is required for all image
+​processing operations (opening, resizing, and saving files).
+​We specify >=10.0.0 to ensure access to modern security fixes and features.
+​Pillow>=10.0.0
