@@ -1,55 +1,82 @@
-# Image-Resizer-Tool
-This Python script provides a simple, automated solution for batch resizing and processing image files using the Pillow library. It is designed to handle large directories of images quickly and efficiently.
-🎯 Goal
-To automate the scaling of images to a uniform target resolution (default is 800x600 pixels) for use in web applications, thumbnails, or other standardized formats.
-🛠️ Requirements
-The project relies solely on the following dependencies:
-| Dependency | Purpose |
-|---|---|
-| Python 3.8+ | Runtime environment. |
-| Pillow | Core library for image manipulation (resize, format handling). |
-Installation
- * Clone the repository:
-   git clone [YOUR_REPOSITORY_URL]
-cd batch-image-resizer
+# Image Resizer Tool 🖼️
 
- * Install dependencies:
+A fast, lightweight, and robust Python utility designed for batch processing and resizing of images. Built with `Pillow`, this tool automates the tedious task of scaling images to a uniform target resolution while preserving aspect ratios and handling various image formats effortlessly. 
+
+Ideal for web developers preparing thumbnails, data scientists managing image datasets, or anyone needing quick bulk image resizing.
+
+## ✨ Features
+
+- **Batch Processing**: Automatically iterates through all valid images in a designated source folder.
+- **Smart Aspect Ratio Maintenance**: Defaults to preserving original image proportions while fitting them within the target boundaries, preventing unwanted distortion.
+- **Format Compatibility**: Handles mode conversions (e.g., `RGBA` to `RGB`) seamlessly, preventing errors when saving PNGs or other formats with alpha channels to JPEG.
+- **Robust Error Handling**: Skips invalid or corrupt files and gracefully logs errors without halting the entire batch process.
+- **Command-Line Interface (CLI)**: Easily configurable via CLI arguments without modifying the source code.
+
+## 🛠️ Requirements
+
+- **Python 3.8+**
+- **Pillow >= 10.0.0** (The core library for image manipulation)
+
+## 🚀 Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/abhranilsingharoy-cloud/Image-Resizer-Tool.git
+   cd Image-Resizer-Tool
+   ```
+
+2. **Install the dependencies:**
+   ```bash
    pip install -r requirements.txt
+   ```
 
-🚀 Usage
-1. Structure the Directories
-Ensure you have the following folder structure in the same directory as the script:
+## 💻 Usage
+
+### 1. Directory Structure
+
+By default, the script looks for an `input_images` directory. You can use the provided script to generate some test images if needed.
+
+```text
 .
 ├── image_resizer.py
+├── generate_test_images.py  <-- Run this to create dummy images for testing
 ├── requirements.txt
-├── input_images/  <-- Place your original images here (JPG, PNG, etc.)
-└── resized_images/ <-- Output folder (will be created if it doesn't exist)
+├── input_images/            <-- Place your original images here (JPG, PNG, etc.)
+└── resized_images/          <-- The tool will create this and save output here
+```
 
-2. Configure Settings
-Open image_resizer.py and modify the if __name__ == "__main__": block to set your desired input/output directories and the new size:
-    # --- CONFIGURATION ---
-    source_dir = "input_images"
-    output_dir = "resized_images"
-    
-    # Target size: (Width, Height) in pixels
-    new_size = (800, 600) 
+### 2. Running the Tool
 
-3. Execute the Script
-Run the main script from your terminal:
+You can run the script with its default settings (Input: `input_images`, Output: `resized_images`, Target Size: `800x600`, maintaining aspect ratio):
+
+```bash
 python image_resizer.py
+```
 
-4. Review Output
-The script will print the processing status for each file. Once complete, all resized images will be located in the resized_images folder.
-⚙️ Key Features
- * Batch Processing: Iterates through all valid images in the source folder.
- * Format Compatibility: Automatically handles mode conversion (e.g., RGBA to RGB) to ensure proper saving, particularly when converting PNGs to JPGs.
- * Error Handling: Skips non-image files and catches exceptions during individual file processing to ensure the batch run completes.
-📝 Customization Notes
-If you need to maintain the aspect ratio instead of forcing a specific width/height, replace the line inside image_resizer.py:
-# Before (Forces dimensions, potentially distorting the image):
-resized_img = img.resize(target_size)
+### 3. Advanced Configuration (CLI Arguments)
 
-# After (Maintains aspect ratio, using 'target_size' as the max boundaries):
-img.thumbnail(target_size)
-resized_img = img
+The tool supports various arguments for custom workflows:
 
+```bash
+python image_resizer.py --source "my_photos" --output "thumbnails" --width 1024 --height 768
+```
+
+| Argument | Description | Default |
+|----------|-------------|---------|
+| `--source` | Source directory containing the original images. | `input_images` |
+| `--output` | Target directory to save the resized images. | `resized_images` |
+| `--width` | Target maximum width in pixels. | `800` |
+| `--height`| Target maximum height in pixels. | `600` |
+| `--force` | Force the image to exact width and height (ignores aspect ratio). | `False` |
+
+## 🧪 Testing
+
+To test the script before using it on your own files, generate sample images by running:
+```bash
+python generate_test_images.py
+```
+This creates 5 colored test images in the `input_images` folder. You can then run `python image_resizer.py` to see the results in `resized_images`.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page or submit a pull request.
