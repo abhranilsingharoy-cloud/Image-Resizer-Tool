@@ -1,0 +1,6 @@
+2026-06-06 22:16:36,083 [INFO] Starting batch process. Target size: (800, 600), Format: webp
+2026-06-06 22:16:36,393 [INFO] Success: test_image_3.jpg
+2026-06-06 22:16:36,394 [INFO] Success: test_image_2.jpg
+2026-06-06 22:16:36,399 [INFO] Success: test_image_4.jpg
+2026-06-06 22:16:36,402 [INFO] Success: test_image_1.jpg
+2026-06-06 22:16:36,428 [INFO] Success: test_image_5.jpg
